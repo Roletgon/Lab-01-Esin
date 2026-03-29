@@ -1,8 +1,21 @@
-﻿Console.Write("Введите строку: ");
-string input = Console.ReadLine();
+﻿using ConsoleApp.Modules;
 
-char[] arr = input.ToCharArray();
-Array.Reverse(arr);
+class Program
+{
+    static void Main(string[] args)
+    {
+        string input = InputModule.ReadString("Введите строку: ");
 
-Console.WriteLine("Результат: " + new string(arr));
-Console.Read();
+        if (ValidationModule.IsNonEmptyString(input))
+        {
+            string reversed = ProcessingModule.ReverseString(input);
+            ProcessingModule.PrintResult(reversed);
+        }
+        else
+        {
+            Console.WriteLine("Ошибка: строка пуста.");
+        }
+
+        Console.Read();
+    }
+};
